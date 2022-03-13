@@ -18,13 +18,17 @@ function Name(props: NameDetails): JSX.Element {
 }
 
 export default function ListOfBabyNames(): JSX.Element {
-  const allRenderedNames = babyNamesData.map((oneName) => {
+  const orderedNames = [
+    ...babyNamesData.sort((a, b) => a.name.localeCompare(b.name)),
+  ];
+
+  const allOrderedRenderedNames = orderedNames.map((oneName) => {
     return <Name name={oneName.name} key={oneName.id} sex={oneName.sex} />;
   });
 
   return (
     <div className="listofNanes">
-      <ul>{allRenderedNames}</ul>
+      <ul>{allOrderedRenderedNames}</ul>
     </div>
   );
 }
