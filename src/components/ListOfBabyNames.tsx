@@ -1,4 +1,6 @@
+import { useState } from "react";
 import babyNamesData from "../data/babyNamesData.json";
+
 interface NameDetails {
   sex: string;
   key: number;
@@ -18,17 +20,36 @@ function Name(props: NameDetails): JSX.Element {
 }
 
 export default function ListOfBabyNames(): JSX.Element {
-  const orderedNames = [
-    ...babyNamesData.sort((a, b) => a.name.localeCompare(b.name)),
+  const [typedSearch, setTypedSearch] = useState<string>("");
+  const filteredBabyNames = [
+    ...babyNamesData.filter((names) => {
+      return typedSearch === ""
+        ? names
+        : names.name.toLowerCase().includes(typedSearch.toLowerCase());
+    }),
   ];
 
-  const allOrderedRenderedNames = orderedNames.map((oneName) => {
-    return <Name name={oneName.name} key={oneName.id} sex={oneName.sex} />;
-  });
+  const orderedFilteredNames = [
+    ...filteredBabyNames.sort((a, b) => a.name.localeCompare(b.name)),
+  ];
+
+  const allOrderedFilteredRenderedNames = orderedFilteredNames.map(
+    (oneName) => {
+      return <Name name={oneName.name} key={oneName.id} sex={oneName.sex} />;
+    }
+  );
 
   return (
-    <div className="listofNanes">
-      <ul>{allOrderedRenderedNames}</ul>
+    <div className="listofNames">
+      <div>
+        <input
+          value={typedSearch}
+          name="Search For Name"
+          onChange={(e) => setTypedSearch(e.target.value)}
+        />
+      </div>
+
+      <ul>{allOrderedFilteredRenderedNames}</ul>
     </div>
   );
 }
