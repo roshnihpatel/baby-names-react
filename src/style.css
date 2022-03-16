@@ -1,0 +1,38 @@
+/* [
+  "#ffab07",
+  "#e9d558",
+  "#72ad75",
+  "#0e8d94",
+  "#434d53"
+]
+[
+  "#fdffd9",
+  "#fff0b8",
+  "#ffd6a3",
+  "#faad8e",
+  "#142f30"
+] */
+
+body {
+  background-color: #ecc4e6;
+  text-align: center;
+  margin: 0px;
+}
+
+.f {
+  background-color: #ffc756;
+}
+.m {
+  background-color: #93c596;
+}
+.nameCard {
+  border: 1px solid rgb(99, 99, 99);
+  border-radius: 5px;
+  padding: 4px;
+  margin: auto;
+  color: rgb(99, 99, 99);
+}
+.listOfBabyNames {
+  padding: 5px;
+  display: inline-flex;
+}

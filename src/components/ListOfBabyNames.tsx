@@ -11,10 +11,10 @@ function Name(props: NameDetails): JSX.Element {
   //const {sex, name, key} = props
 
   return (
-    <div>
-      <button key={props.key} className={props.sex}>
+    <div className="listOfBabyNames">
+      <div key={props.key} className={"nameCard " + props.sex}>
         {props.name}
-      </button>
+      </div>
     </div>
   );
 }
@@ -24,7 +24,7 @@ export default function ListOfBabyNames(): JSX.Element {
   const filteredBabyNames = [
     ...babyNamesData.filter((names) => {
       return typedSearch === ""
-        ? names
+        ? names //if searchbar is empty give all names
         : names.name.toLowerCase().includes(typedSearch.toLowerCase());
     }),
   ];
